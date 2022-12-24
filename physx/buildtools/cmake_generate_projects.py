@@ -123,14 +123,21 @@ class CMakePreset:
                 if os.environ.get('PM_CUDA_PATH') is not None:
                     outString = outString + ' -DCUDA_TOOLKIT_ROOT_DIR=' + \
                         os.environ['PM_CUDA_PATH']
+
                 if self.compiler == 'vc15':
                     print('VS15CL:' + os.environ['VS150CLPATH'])
                     outString = outString + ' -DCUDA_HOST_COMPILER=' + \
                         os.environ['VS150CLPATH']
+
                 if self.compiler == 'vc16':
                     print('VS16CL:' + os.environ['VS160CLPATH'])
                     outString = outString + ' -DCUDA_HOST_COMPILER=' + \
                         os.environ['VS160CLPATH']
+
+                if self.compiler == 'vc17':
+                    print('VS17CL:' + os.environ['VS170CLPATH'])
+                    outString = outString + ' -DCUDA_HOST_COMPILER=' + \
+                        os.environ['VS170CLPATH']
 
         return outString
 
@@ -150,6 +157,8 @@ class CMakePreset:
             outString = outString + '-G \"Visual Studio 15 2017\"'
         elif self.compiler == 'vc16':
             outString = outString + '-G \"Visual Studio 16 2019\"'
+        elif self.compiler == 'vc17':
+            outString = outString + '-G \"Visual Studio 17 2022\"'
         elif self.compiler == 'xcode':
             outString = outString + '-G Xcode'
         elif self.targetPlatform == 'linux':
